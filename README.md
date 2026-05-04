@@ -1,97 +1,93 @@
 # WhatsApp Web Clone
-This is a full-stack clone of WhatsApp Web focusing on core chat functionality, built using the MERN stack (MongoDB, Express.js, React, Node.js) and Socket.IO for real-time capabilities.
 
-## Features Implemented
+This is a full-stack, feature-rich clone of WhatsApp Web, built using the MERN stack (MongoDB, Express.js, React, Node.js) and Socket.IO for advanced real-time communication.
 
-1. **User Setup**
-   - Simple authentication using a unique username.
-   - Users are distinguishable and can chat with any other registered user.
+## Advanced Features
 
-2. **Chat Interface**
-   - Two-panel layout featuring a sidebar (chat list) and a main chat window.
-   - Active chat highlighting.
-   - Distinct visual styles for sent and received messages.
-   - Automatic scroll to the latest message.
-   - Read receipts (sent, delivered, seen) and typing indicators.
+### 1. Group Messaging Subsystem
+- **Create Groups:** Seamlessly create group chats with multiple members.
+- **Real-Time Sync:** Instant message broadcasting to all group members using Socket rooms.
+- **Group Notifications:** Unread message badges for groups in the sidebar.
+- **Typing Awareness:** See who is typing in a group in real-time.
+- **Attribution:** Messages in groups clearly show the sender's username.
 
-3. **Messaging Functionality**
-   - Send and receive text messages in real-time.
-   - Messages are stored persistently in MongoDB and fetched chronologically.
-   - Support for emojis in messages.
+### 2. Voice Notes (Push-to-Talk)
+- **Native Recording:** Record high-quality voice notes directly in the browser using the MediaRecorder API.
+- **Themed Player:** Sleek, integrated audio player within message bubbles.
+- **Real-Time Delivery:** Voice notes are broadcast instantly to recipients.
 
-4. **Backend APIs**
-   - RESTful API endpoints for user management (`/api/users`) and message handling (`/api/messages`).
-   - Proper HTTP status codes and error handling for invalid/empty requests.
+### 3. Real-Time Engine (Socket.IO)
+- **Status Ticks:** Authentic WhatsApp-style read receipts:
+    - **✓** (Sent)
+    - **✓✓** (Delivered)
+    - **✓✓** (Seen - Blue Ticks)
+- **Multi-Device Sync:** Data stays synchronized across multiple tabs and devices in real-time.
+- **Online Presence:** Live "Online/Offline" status indicators for contacts.
+- **Reactions:** React to any message with emojis (👍, ❤️, 😂, etc.) with real-time updates.
 
-5. **Real-Time Updates**
-   - Instant message updates, typing indicators, and read receipts powered by Socket.IO.
-   - Live rendering of messages without page refresh.
+### 4. Premium UI/UX
+- **WhatsApp Mobile Design:** Sidebar redesign inspired by the WhatsApp mobile app.
+- **A-Z Contact Sorting:** Contacts are automatically grouped by letter for easy navigation.
+- **Search:** Instant search for contacts and groups.
+- **Smooth Animations:** Glassmorphism effects, sliding sidebars, and polished transitions.
 
-6. **Application Structure**
-   - Separation of concerns: distinct `frontend` and `backend` directories.
-   - Modular frontend with reusable React components (`ChatWindow`, `Sidebar`, `MessageBubble`).
-   - Clean backend structure with separate routes, controllers, models, and socket event handlers.
+### 5. Media Support
+- **Images & Video:** Upload and view images and videos directly in the chat.
+- **MIME Detection:** Intelligent backend detection for different media types (image/video/audio).
+
+### 6. Security & Stability
+- **JWT Authentication:** Secure sessions using JSON Web Tokens and HTTP-only cookies.
+- **Protected Routes:** Backend APIs are secured; users can only access their own chats and groups.
+- **Auto-Retry & Reconnect:** Socket.IO handles intermittent network issues gracefully.
 
 ## Technology Stack
 
-- **Frontend:** React.js (Vite), React Router, Axios, Socket.IO Client, CSS
-- **Backend:** Node.js, Express.js, Socket.IO, Mongoose
+- **Frontend:** React.js (Vite), React Router, Socket.IO Client, Vanilla CSS (Glassmorphism)
+- **Backend:** Node.js, Express.js, Socket.IO, Mongoose, Multer (Media Uploads)
 - **Database:** MongoDB
+- **Auth:** JWT, Cookie-Parser
 
-## Local Development Setup
-
-Follow these instructions to run both the frontend and backend locally.
+## Installation & Setup
 
 ### Prerequisites
-
-- Node.js (v18+ recommended)
-- MongoDB account (for MongoDB URI) or local MongoDB server
+- Node.js (v18+)
+- MongoDB (Local or Atlas)
 
 ### 1. Backend Setup
-
-1. Navigate to the `backend` directory:
-   ```bash
-   cd backend
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Set up environment variables:
-   Create a `.env` file in the `backend` directory with the following variables:
-   ```env
-   MONGO_URI=your_mongodb_connection_string
-   PORT=5000
-   CLIENT_URL=http://localhost:5173
-   ```
-   *(Note: Replace `your_mongodb_connection_string` with your actual MongoDB connection string. Ensure the `CLIENT_URL` matches your frontend development server URL.)*
-
-4. Start the backend server:
-   ```bash
-   npm run dev
-   # or
-   npm start
-   ```
+```bash
+cd backend
+npm install
+```
+Create a `.env` file in the `backend` folder:
+```env
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_secret_key
+PORT=5000
+CLIENT_URL=http://localhost:5173
+```
+Start the server:
+```bash
+npm start
+```
 
 ### 2. Frontend Setup
+```bash
+cd frontend
+npm install
+```
+Create a `.env` file in the `frontend` folder:
+```env
+VITE_API_URL=http://localhost:5000/api
+VITE_SOCKET_URL=http://localhost:5000
+```
+Start the app:
+```bash
+npm run dev
+```
 
-1. Open a new terminal and navigate to the `frontend` directory:
-   ```bash
-   cd frontend
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Start the frontend development server:
-   ```bash
-   npm run dev
-   ```
-
-### 3. Usage
-- Open your browser and navigate to `http://localhost:5173`.
-- Enter a username to log in or create a new user.
-- To test the chat functionality, open an incognito window or a different browser, log in with a different username, and start chatting!
-
-## Submission Notes
-- To submit this task as a public GitHub repository, initialize git in the root folder (`git init`), commit the code, and push it to your newly created public repository on GitHub.
+## Usage
+1. Open `http://localhost:5173`.
+2. Register/Login with a username and email.
+3. Use the **"+" icon** to start a new chat or create a group.
+4. Use the **Microphone** to send voice notes.
+5. Click **📎** to share images or videos.
